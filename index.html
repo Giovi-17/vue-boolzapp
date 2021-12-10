@@ -140,15 +140,16 @@
 
                 <div class="col-12 d-flex flex-column centralChatContainer">
 
-                    <div v-for="(userText, index) in contacts" class="col-4 mex mexReceived">
+                    <div v-for="(userText, index) in contacts[2].messages" class="col-4 mex mexReceived">
 
                         <div>
 
-                            {{ contacts[2].messages[0].text }}
+                            {{ userText.text }}
+                            
 
                         </div>
 
-                        <div class="timeMex">{{ contacts[2].messages[0].date }}</div>
+                        <div class="timeMex">{{ userText.date }}</div>
 
                     </div>
 
