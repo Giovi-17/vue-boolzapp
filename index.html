@@ -14,14 +14,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
+    <div id="root" class="d-flex justify-content-center align-items-center">
 
-    <div class="topBody"></div>
-
-    <div class="bottomBody"></div>
-
-    <div id="root">
-
-        <div class="container-fluid d-flex mainContainer">
+        <div class="container-fluid d-flex d-flex justify-content-center align-items-center mainContainer">
 
             <div class="row d-flex flex-column usersContainer">
 
@@ -79,7 +75,7 @@
 
                     <li v-for="(contact, index) in contacts">
 
-                        <div class="infoFiendUser d-flex align-items-center">
+                        <div @click="selectedFriend(index)" class="infoFiendUser d-flex align-items-center">
 
                             <div class="myFriendUser d-flex ">
                 
@@ -97,7 +93,6 @@
                 
                             </div>
                                 
-                
                         </div>
 
                     </li>
@@ -112,10 +107,10 @@
 
                     <div class="col-6 d-flex align-items-center">
 
-                        <div class="imgUserChat"> <img :src="'img/avatar' + contacts[2].avatar + '.jpg'" alt="My Avatar"> </div>
+                        <div class="imgUserChat"> <img :src="'img/avatar' + contacts[0].avatar + '.jpg'" alt="My Avatar"> </div>
                         <div class="infoUserChat">
 
-                            <div class="nameUserChat">{{ contacts[2].name }}</div>
+                            <div class="nameUserChat">{{ contacts[0].name }}</div>
                             <div class="timeAccess"><span>Ultimo accesso oggi alle:</span></div>
 
                         </div>
@@ -140,16 +135,20 @@
 
                 <div class="col-12 d-flex flex-column centralChatContainer">
 
-                    <div v-for="(userText, index) in contacts[2].messages" class="col-4 mex mexReceived">
+                    <div v-for="(userText, index) in contacts[0].messages" class="col-4" >
 
-                        <div>
+                        <div class="mex" :class="{ sent: typeOfMex(), received: !typeOfMex() }">
 
-                            {{ userText.text }}
-                            
+                            <div>
+
+                                {{ userText.text }}
+                                
+    
+                            </div>
+    
+                            <div class="timeMex">{{ userText.date }}</div>
 
                         </div>
-
-                        <div class="timeMex">{{ userText.date }}</div>
 
                     </div>
 

@@ -16,6 +16,7 @@ const app = new Vue(
         el: "#root",
         data: {
 
+            changeClassMex: false,
             userText: "",
 
             contacts: [
@@ -112,13 +113,28 @@ const app = new Vue(
 
             typeOfMex: function(){
 
+                console.log(this.contacts[0].messages[0].status);
 
+                if(this.contacts[0].messages[0].status === "sent"){
+
+                    this.changeClassMex = true;
+
+                }else if(this.contacts[0].messages[0].status === "received"){
+
+                    this.changeClassMex = false;
+
+                }
+
+
+                console.log(this.changeClassMex);
+
+                return this.changeClassMex;
 
             },
 
             addMex: function(userText){
 
-                this.contacts[2].messages.push({
+                this.contacts[0].messages.push({
 
                     data: "Prova Data",
                     text: userText,
@@ -128,7 +144,17 @@ const app = new Vue(
 
                 this.userText = "";
 
-                console.log(this.contacts[2].messages);
+                console.log(this.contacts[0].messages);
+
+            },
+
+            selectedFriend: function(index){
+
+                if(this.contacts[index].visible){
+                    
+
+                }
+
 
             }
 
