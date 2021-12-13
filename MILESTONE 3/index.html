@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Boolzapp</title>
+
+
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="root" class="d-flex justify-content-center align-items-center">
+
+        <div class="container-fluid d-flex d-flex justify-content-center align-items-center mainContainer">
+
+            <div class="row d-flex flex-column usersContainer">
+
+                <div class="d-flex justify-content-between align-items-center myInfoUser">
+
+                    <div class="col-6 d-flex align-items-center infoUser">
+
+                        <div class="imgUser"> <img src="img/avatar_io.jpg" alt="My Avatar"> </div>
+                        <div class="nameUser">Nome utente</div>
+
+                    </div>
+
+                    <div class="col-4 infoUserIcon">
+
+                        <ul class="d-flex justify-content-end align-items-center">
+
+                            <li><i class="fas fa-circle-notch"></i></li>
+
+                            <li><i class="fas fa-comment-alt"></i></li>
+
+                            <li><i class="fas fa-minus"></i></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="silenceNotification d-flex justify-content-start align-items-center">
+
+                    <div class="iconSoundNotification d-flex justify-content-center align-items-center">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+
+                    <div class="infoNotification">
+
+                        <div class="receiveNotification">Ricevi notifiche di nuovi messaggi</div>
+
+                        <div class="activeNotification"><span>Attiva notifiche desktop</span></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="searchBar d-flex justify-content-center align-items-center">
+
+                    <i class="fas fa-search searchIcon"></i>
+
+                    <input type="text" name="" id="" placeholder="Cerca o inizia una nuova chat">
+
+                </div>
+
+                <ul class="friendUserList">
+
+                    <li v-for="(contact, index) in contacts">
+
+                        <div @click="selectedFriend(index)" class="infoFiendUser d-flex align-items-center">
+
+                            <div class="myFriendUser d-flex ">
+                
+                                <div class="friendImage d-flex align-items-center">
+                
+                                    <img :src="'img/avatar' + contact.avatar + '.jpg'" alt="">
+                
+                                </div>
+                
+                                <div class="friendNameContainer">
+                
+                                    <span class="friendName">{{ contact.name }}</span>
+                
+                                </div>
+                
+                            </div>
+                                
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="row d-flex flex-column justify-content-between chatContainer">
+
+                <div class="col-12 d-flex justify-content-between align-items-center topChatContainer">
+
+                    <div class="col-6 d-flex align-items-center">
+
+                        <div class="imgUserChat"> <img :src="'img/avatar' + contacts[selFriend].avatar + '.jpg'" alt="My Avatar"> </div>
+                        <div class="infoUserChat">
+
+                            <div class="nameUserChat">{{ contacts[selFriend].name }}</div>
+                            <div class="timeAccess"><span>Ultimo accesso oggi alle:</span></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+
+                        <ul class="d-flex justify-content-end align-items-center">
+
+                            <li><i class="fas fa-search"></i></li>
+
+                            <li><i class="fas fa-paperclip"></i></li>
+
+                            <li><i class="fas fa-minus"></i></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="col-12 d-flex flex-column centralChatContainer">
+
+                    <div v-for="(userText, index) in contacts[selFriend].messages" class="col">
+
+                        <div class="mex" :class="{ sent: typeOfMex(userText), received: !typeOfMex(userText) }">
+
+                            <div>
+
+                                {{ userText.text }}
+    
+                            </div>
+    
+                            <div class="timeMex">{{ userText.date }}</div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col-12 bottomChatContainer d-flex justify-content-center align-items-center">
+
+                    <div class="col-1 d-flex justify-content-center align-items-center bottomChatContainerIcon">
+                        
+                        <i class="far fa-smile"></i>
+                    
+                    </div>
+
+                    <div class="col-10 d-flex justify-content-center align-items-center bottomChatContainerInput">
+
+                        <input v-model="userText" @keyUp.enter="addMex(userText)" type="text" name="" id="" placeholder="Scrivi un messaggio">
+
+                    </div>
+
+                    <div class="col-1 d-flex justify-content-center align-items-center bottomChatContainerIcon">
+                        
+                        <i class="fas fa-microphone"></i>
+                    
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
