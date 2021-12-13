@@ -16,6 +16,7 @@ const app = new Vue(
         el: "#root",
         data: {
 
+            selFriend: 0,
             changeClassMex: false,
             userText: "",
 
@@ -111,9 +112,9 @@ const app = new Vue(
         },
         methods: {
 
-            typeOfMex: function(){
+            typeOfMex: function(index){
 
-                console.log(this.contacts[0].messages[0].status);
+                /* console.log(this.contacts[0].messages[0].status); */
 
                 if(this.contacts[0].messages[0].status === "sent"){
 
@@ -125,8 +126,9 @@ const app = new Vue(
 
                 }
 
+                console.log(index);
 
-                console.log(this.changeClassMex);
+                /* console.log(this.changeClassMex); */
 
                 return this.changeClassMex;
 
@@ -150,11 +152,7 @@ const app = new Vue(
 
             selectedFriend: function(index){
 
-                if(this.contacts[index].visible){
-                    
-
-                }
-
+                selFriend = index;
 
             }
 

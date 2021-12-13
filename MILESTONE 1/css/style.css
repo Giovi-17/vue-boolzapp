@@ -1,9 +1,14 @@
 /* COMMON */
-
 #root{
 
     height: 100vh;
     min-width: 950px;
+
+}
+
+.col{
+
+    flex: 0 0 auto;
 
 }
 
@@ -255,13 +260,17 @@ body{
 .received{
 
     background-color: white;
+    float: left;
+    align-self: start;
+
 
 }
 
 .sent{
 
     background-color: #d5f9ba;
-    align-self: center;
+    float: right;
+    align-self: end;
 
 }
 
