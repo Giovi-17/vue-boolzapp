@@ -111,24 +111,11 @@ const app = new Vue(
         },
         methods: {
 
-            typeOfMex: function(userText){
-
-                if(userText.status === "sent"){
-
-                    return true;
-
-                }
-                else{
-
-                    return false;
-
-                }
-
-            },
-
             addMex: function(userText){
 
-                const dayDate = dayjs().format("d/MM/YYYY hh:mm:ss");
+                if(userText.trim().length > 0){
+
+                const dayDate = dayjs().format("DD/MM/YYYY HH:mm:ss");
 
                 this.contacts[this.selFriend].messages.push({
 
@@ -142,6 +129,8 @@ const app = new Vue(
 
                 setTimeout(this.addAutoFriendMex, 1000);
 
+                }
+
             },
 
             selectedFriend: function(index){
@@ -152,7 +141,7 @@ const app = new Vue(
 
             addAutoFriendMex: function(){
                 
-                const dayDate = dayjs().format("d/MM/YYYY hh:mm:ss");
+                const dayDate = dayjs().format("DD/MM/YYYY HH:mm:ss");
 
                 this.contacts[this.selFriend].messages.push({
 
@@ -168,7 +157,7 @@ const app = new Vue(
 
                 this.contacts.forEach((element) => {
 
-                    if(element.name.toLowerCase().includes(this.userFilterText.toLowerCase())){
+                    if(element.name.toLowerCase().includes(this.userFilterText.toLowerCase().trim())){
 
                         element.visible = true;
 

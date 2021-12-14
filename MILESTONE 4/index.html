@@ -141,7 +141,7 @@
 
                     <div v-for="(userText, index) in contacts[selFriend].messages" class="col">
 
-                        <div class="mex" :class="{ sent: typeOfMex(userText), received: !typeOfMex(userText) }">
+                        <div class="mex" :class="{ sent: userText.status === 'sent', received: userText.status === 'received' }">
 
                             <div>
 

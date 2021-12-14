@@ -183,6 +183,12 @@ body{
 
 }
 
+.colorSelected:active{
+
+    background-color: lightgray;
+
+}
+
 .myFriendUser{
 
     height: 75px;
@@ -292,12 +298,17 @@ body{
 }
 
 .bottomChatContainerIcon i{
+    
     color: rgba(0, 0, 0, 0.5);
     font-size: 25px;
+    cursor: pointer;
+
 }
 
 .bottomChatContainerInput{
+
     height: 100%;
+
 }
 
 .bottomChatContainerInput input{
