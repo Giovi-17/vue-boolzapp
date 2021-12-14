@@ -93,7 +93,7 @@
                 
                                     <span class="friendName">{{ contact.name }}</span>
 
-                                    <span class="friendUserListMex">text</span> 
+                                    <span class="friendUserListMex">{{ contact.messages[lastElement].text }}</span> 
 
                                 </div>
 
@@ -101,7 +101,7 @@
 
                             <div class="friendUserListData d-flex">
                                     
-                                <span>date</span>
+                                <span>{{ contact.messages[lastElement].date }}</span>
                             
                             </div>
                                 

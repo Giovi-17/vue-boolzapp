@@ -18,6 +18,7 @@ const app = new Vue(
             selFriend: 0,
             userText: "",
             userFilterText: "",
+            lastElement: 0,
 
             contacts: [
                 {
@@ -174,6 +175,14 @@ const app = new Vue(
             deleteMex: function(index){
 
                 this.contacts[this.selFriend].messages.splice(index, 1);
+
+            },
+
+            lastElementF: function(){
+
+                lastElement = this.contacts[this.selFriend].messages.length - 1; 
+
+                console.log(lastElement);
 
             }
 
