@@ -19,6 +19,7 @@ const app = new Vue(
             userText: "",
             userFilterText: "",
             lastElement: 0,
+            activeMessage : null,
 
             contacts: [
                 {
@@ -137,6 +138,7 @@ const app = new Vue(
             selectedFriend: function(index){
 
                 this.selFriend = index;
+                this.activeMessage = null;
 
             },
 
@@ -175,15 +177,38 @@ const app = new Vue(
             deleteMex: function(index){
 
                 this.contacts[this.selFriend].messages.splice(index, 1);
+                this.activeMessage = null;
 
             },
 
-            lastElementF: function(){
+            setActiveMessage: function(index){
 
-                lastElement = this.contacts[this.selFriend].messages.length - 1; 
+                if(index === this.activeMessage){
 
-                console.log(lastElement);
+                this.activeMessage = null;
 
+                }else{
+
+                this.activeMessage = index;
+
+                }
+
+            },
+
+            getContactLastMessageText: function(contact){
+
+                const contactMessages = contact.messages;
+                const lastMessageText = contactMessages[contactMessages.length - 1].text ;
+
+                const cutMessageText = lastMessageText.slice(0, 20);
+
+                if( cutMessageText.length > 19 ){
+
+                    cutMessageText += "..." ;
+
+                }
+
+                return cutMessageText ;
             }
 
         }
